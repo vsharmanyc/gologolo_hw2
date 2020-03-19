@@ -31,7 +31,7 @@ class HomeScreen extends Component {
                 <div className="col s4">
                     <h3>Recent Work</h3>
                     <LogoLinks
-                        logos={this.props.logos}                
+                        logos={this.props.logos}
                         goToLogoCallback={this.props.goToLogoCallback}
                     />
                 </div>
@@ -47,6 +47,9 @@ class HomeScreen extends Component {
                             Create a New Logo
                         </button>
                     </div>
+                </div>
+                <div>
+
                 </div>
             </div>
         )

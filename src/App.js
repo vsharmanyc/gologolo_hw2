@@ -294,6 +294,10 @@ class App extends Component {
     console.log("App afterLogoDeleted logos: " + this.logosToString(this.state.logos));
     // FIRST GO HOME
     this.goToHomeScreen();
+
+    // then remove deleted logo from local storage 
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
   }
 
   // THERE ARE TWO FUNCTIONS TO HELP GENERATE OUTPUT FOR DEBUGGING
@@ -346,6 +350,7 @@ class App extends Component {
           changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
+          deleteLogoFunction={this.deleteLogo}           // DELETE LOGO CALLBACK
 
         />;
       default:
