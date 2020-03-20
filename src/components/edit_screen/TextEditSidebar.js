@@ -72,10 +72,23 @@ class TextEditSidebar extends Component {
         this.setState({ backgroundColor: event.target.value }, this.completeUserEditing);
     }
 
+    handleBorderColorChange = (event) => {
+        this.setState({ borderColor: event.target.value }, this.completeUserEditing);
+    }
+
+    handleBorderRadiusChange = (event) => {
+        this.setState({ borderRadius: event.target.value }, this.completeUserEditing);
+    }
+
+    handleBorderThicknessChange = (event) => {
+        this.setState({ borderThickness: event.target.value }, this.completeUserEditing);
+    }
+    
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor,
+            this.state.borderColor, this.state.borderRadius, this.state.borderThickness);
     }
 
     render() {
@@ -165,7 +178,7 @@ class TextEditSidebar extends Component {
                             <div className="col s4">Radius:</div>
                             <div className="col s8">
                                 <input type="range" min="0" max="144"
-                                    onChange={this.handleBorderSizeChange}
+                                    onChange={this.handleBorderRadiusChange}
                                     value={this.props.logo.borderRadius} />
                             </div>
                         </div>
