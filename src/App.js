@@ -112,6 +112,9 @@ class App extends Component {
       currentScreen: AppScreen.HOME_SCREEN,
       currentLogo: {}
     });
+
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
   }
 
   // AFTER THE STATE IS SET IT WILL FORCE A RENDER OF THIS 

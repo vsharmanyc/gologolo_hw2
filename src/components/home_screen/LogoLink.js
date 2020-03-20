@@ -32,7 +32,7 @@ export class LogoLink extends Component {
                 style={ {cursor: "pointer"} }
                 onClick={this.handleGoToLogo}
             >
-                {this.props.logo.text}<br />
+                {this.props.logo.text.replace(/\s/g,'\u00A0')}<br />
             </div>
         )
     }

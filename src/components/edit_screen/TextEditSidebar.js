@@ -2,28 +2,14 @@ import React, { Component } from 'react'
 import { Modal, Button, Range } from 'react-materialize'
 
 class TextEditSidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         // WE'LL MANAGE THE UI CONTROL
         // VALUES HERE
         this.state = {
-            text: "",
+            text: this.props.logo.text,
             isValidText: true,
-            textColor: "",
-            fontSize: "",
-            backgroundColor: "",
-            borderColor: "",
-            borderRadius: "", 
-            borderThickness: "",
-            padding: "",
-            margin: ""
-        }
-    }
-
-    componentDidMount() {
-        this.setState({ 
-            text: this.props.logo.text, 
             textColor: this.props.logo.textColor,
             fontSize: this.props.logo.fontSize,
             backgroundColor: this.props.logo.backgroundColor,
@@ -31,19 +17,17 @@ class TextEditSidebar extends Component {
             borderRadius: this.props.logo.borderRadius, 
             borderThickness: this.props.logo.borderThickness,
             padding: this.props.logo.padding,
-            margin: this.props.logo.margin});
+            margin: this.props.logo.margin
+        }
     }
 
     handleUndo = () => {
         this.props.undoCallback();
     }
 
-    stateTextIsValid() {
-        return !this.state.text.match(/^\s*$/g);
-    }
-
     handleEnterTextChange = (event) => {
-        if (this.stateTextIsValid())
+        //check if text is not an empty string
+        if (!this.state.text.match(/^\s*$/g))
             this.completeUserEditing();
         else
             this.setState({ isValidText: false });

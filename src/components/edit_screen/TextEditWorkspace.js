@@ -19,7 +19,7 @@ class TextEditWorkspace extends Component {
         return (
             <div className="col s8"
                 style={ styles.container }>
-                {this.props.logo.text}
+                {this.props.logo.text.replace(/\s/g,'\u00A0')}
             </div>
         )
     }
