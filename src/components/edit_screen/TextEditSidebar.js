@@ -10,13 +10,28 @@ class TextEditSidebar extends Component {
         this.state = {
             text: "",
             isValidText: true,
-            textColor: "#FF0000",
-            fontSize: 24
+            textColor: "",
+            fontSize: "",
+            backgroundColor: "",
+            borderColor: "",
+            borderRadius: "", 
+            borderThickness: "",
+            padding: "",
+            margin: ""
         }
     }
 
     componentDidMount() {
-        this.setState({ text: this.props.logo.text });
+        this.setState({ 
+            text: this.props.logo.text, 
+            textColor: this.props.logo.textColor,
+            fontSize: this.props.logo.fontSize,
+            backgroundColor: this.props.logo.backgroundColor,
+            borderColor: this.props.logo.borderColor,
+            borderRadius: this.props.logo.borderRadius, 
+            borderThickness: this.props.logo.borderThickness,
+            padding: this.props.logo.padding,
+            margin: this.props.logo.margin});
     }
 
     handleUndo = () => {
@@ -53,10 +68,14 @@ class TextEditSidebar extends Component {
         this.setState({ fontSize: event.target.value }, this.completeUserEditing);
     }
 
+    handleBackgroundColorChange = (event) => {
+        this.setState({ backgroundColor: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor);
     }
 
     render() {
@@ -101,6 +120,7 @@ class TextEditSidebar extends Component {
                 </div>
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
+
                         <span className="card-title">Text</span>
                         <div className="row">
                             <div className="col s4">Color:</div>
@@ -117,6 +137,44 @@ class TextEditSidebar extends Component {
                                 <input type="range" min="4" max="144"
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
+                            </div>
+                        </div>
+
+                        <span className="card-title">Background</span>
+                        <div className="row">
+                            <div className="col s4">Color:</div>
+                            <div className="col s8">
+                                <input type="color"
+                                    onChange={this.handleBackgroundColorChange}
+                                    value={this.props.logo.backgroundColor}
+                                />
+                            </div>
+                        </div>
+
+                        <span className="card-title">Border</span>
+                        <div className="row">
+                            <div className="col s4">Color:</div>
+                            <div className="col s8">
+                                <input type="color"
+                                    onChange={this.handleBorderColorChange}
+                                    value={this.props.logo.borderColor}
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Radius:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="144"
+                                    onChange={this.handleBorderSizeChange}
+                                    value={this.props.logo.borderRadius} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col s4">Thickness:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="144"
+                                    onChange={this.handleBorderThicknessChange}
+                                    value={this.props.logo.borderThickness} />
                             </div>
                         </div>
                     </div>

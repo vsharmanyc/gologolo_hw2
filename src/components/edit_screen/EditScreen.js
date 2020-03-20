@@ -35,14 +35,18 @@ export class EditScreen extends Component {
                     deleteLogoFunction={this.props.deleteLogoFunction}
                 />
                 <div className="row">
-                    <TextEditSidebar
-                        logo={this.props.logo}
-                        changeLogoCallback={this.props.changeLogoCallback}
-                        undoCallback={this.props.undoCallback}                                          
-                        canUndo={this.props.canUndo}                         
-                    />
-                    <TextEditWorkspace
-                        logo={this.props.logo} />
+                  
+                        <TextEditSidebar
+                            logo={this.props.logo}
+                            changeLogoCallback={this.props.changeLogoCallback}
+                            undoCallback={this.props.undoCallback}                                          
+                            canUndo={this.props.canUndo}                         
+                        />
+                 
+                    <div class="workspace_component">                 
+                        <TextEditWorkspace
+                            logo={this.props.logo} />
+                    </div>
                 </div>
             </div>
         )
