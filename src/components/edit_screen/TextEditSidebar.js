@@ -83,12 +83,20 @@ class TextEditSidebar extends Component {
     handleBorderThicknessChange = (event) => {
         this.setState({ borderThickness: event.target.value }, this.completeUserEditing);
     }
+
+    handlePaddingChange = (event) => {
+        this.setState({ padding: event.target.value }, this.completeUserEditing);
+    }
     
+    handleMarginChange = (event) => {
+        this.setState({ margin: event.target.value }, this.completeUserEditing);
+    }
+
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
         this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.text, this.state.textColor, this.state.fontSize, this.state.backgroundColor,
-            this.state.borderColor, this.state.borderRadius, this.state.borderThickness);
+            this.state.borderColor, this.state.borderRadius, this.state.borderThickness, this.state.padding, this.state.margin);
     }
 
     render() {
@@ -190,6 +198,25 @@ class TextEditSidebar extends Component {
                                     value={this.props.logo.borderThickness} />
                             </div>
                         </div>
+
+                        <div className="row">
+                            <div className="col s4">Padding:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="144"
+                                    onChange={this.handlePaddingChange}
+                                    value={this.props.logo.padding} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col s4">Margin:</div>
+                            <div className="col s8">
+                                <input type="range" min="0" max="144"
+                                    onChange={this.handleMarginChange}
+                                    value={this.props.logo.margin} />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
