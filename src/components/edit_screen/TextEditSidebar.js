@@ -14,15 +14,41 @@ class TextEditSidebar extends Component {
             fontSize: this.props.logo.fontSize,
             backgroundColor: this.props.logo.backgroundColor,
             borderColor: this.props.logo.borderColor,
-            borderRadius: this.props.logo.borderRadius, 
+            borderRadius: this.props.logo.borderRadius,
             borderThickness: this.props.logo.borderThickness,
             padding: this.props.logo.padding,
             margin: this.props.logo.margin
         }
     }
 
+    componentDidMount(){
+        window.addEventListener("keydown", this.keyPressed);
+    }
+    
+    componentWillUnmount(){
+        window.removeEventListener("keydown", this.keyPressed);
+    }
+
+    keyPressed = (event) =>{
+        if(event.ctrlKey){
+            if(event.key == "z"){
+                this.handleUndo();
+                this.forceUpdate();
+            }
+            else if (event.key == "y"){
+                this.handleRedo();
+                this.forceUpdate();
+            }
+            console.log("ctrl " + event.key);
+        }
+    }
+
     handleUndo = () => {
         this.props.undoCallback();
+    }
+
+    handleRedo = () => {
+        this.props.redoCallback();
     }
 
     handleEnterTextChange = (event) => {
@@ -71,7 +97,7 @@ class TextEditSidebar extends Component {
     handlePaddingChange = (event) => {
         this.setState({ padding: event.target.value }, this.completeUserEditing);
     }
-    
+
     handleMarginChange = (event) => {
         this.setState({ margin: event.target.value }, this.completeUserEditing);
     }
@@ -88,6 +114,12 @@ class TextEditSidebar extends Component {
         let undoClass = "waves-effect waves-light btn-small";
         if (undoDisabled)
             undoClass += " disabled";
+
+        let redoDisabled = !this.props.canRedo();
+        let redoClass = "waves-effect waves-light btn-small";
+        if (redoDisabled)
+            redoClass += " disabled";
+
         return (
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
@@ -121,6 +153,7 @@ class TextEditSidebar extends Component {
                         </Modal>
 
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
+                        <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
                 </div>
                 <div className="card blue-grey darken-1">
@@ -183,6 +216,7 @@ class TextEditSidebar extends Component {
                             </div>
                         </div>
 
+                        <br></br>
                         <div className="row">
                             <div className="col s4">Padding:</div>
                             <div className="col s8">
