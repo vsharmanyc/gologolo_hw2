@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 // THIS IS HOW WE DISPLAY THE LOGO, IN THIS COMPONENT
 class TextEditWorkspace extends Component {
+    
     render() {
         const styles = {
             container: {

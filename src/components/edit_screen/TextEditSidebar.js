@@ -21,6 +21,22 @@ class TextEditSidebar extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.logo !== prevProps.logo) {
+            this.setState({
+                text: this.props.logo.text,
+                textColor: this.props.logo.textColor,
+                fontSize: this.props.logo.fontSize,
+                backgroundColor: this.props.logo.backgroundColor,
+                borderColor: this.props.logo.borderColor,
+                borderRadius: this.props.logo.borderRadius,
+                borderThickness: this.props.logo.borderThickness,
+                padding: this.props.logo.padding,
+                margin: this.props.logo.margin
+            });
+        }
+    }
+
     componentDidMount(){
         window.addEventListener("keydown", this.keyPressed);
     }
@@ -31,11 +47,11 @@ class TextEditSidebar extends Component {
 
     keyPressed = (event) =>{
         if(event.ctrlKey){
-            if(event.key == "z"){
+            if(event.key === "z"){
                 this.handleUndo();
                 this.forceUpdate();
             }
-            else if (event.key == "y"){
+            else if (event.key === "y"){
                 this.handleRedo();
                 this.forceUpdate();
             }
