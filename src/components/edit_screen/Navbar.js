@@ -35,7 +35,7 @@ class Navbar extends React.Component {
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <Modal header="Delete Logo?" trigger={<li style={ {cursor: "pointer"} }>&#128465;</li>}>
+            <Modal header="Delete Logo?" trigger={<li style={ {cursor: "pointer", fontSize: "35px"} }>&#128465;</li>}>
                             <p>
                                 Deleting a logo is an irreversible action<br></br><br></br>
                                 <Button
